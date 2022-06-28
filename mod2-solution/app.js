@@ -12,6 +12,8 @@ ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
   var tbc = this;
   
+  //var shoppingListCheckOff = ShoppingListCheckOffService();
+
   tbc.toBuyItems = ShoppingListCheckOffService.getToBuyItems();
 
   tbc.buyItem = function (itemIndex) {
@@ -28,16 +30,18 @@ AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
 function AlreadyBoughtController(ShoppingListCheckOffService) {
   var abc = this;
 
+  //var shoppingListCheckOff = ShoppingListCheckOffService();
+
   abc.boughtItems = ShoppingListCheckOffService.getBoughtItems();
 
-  tbc.isEmptytoBoughtItems = function () {
+  abc.isEmptytoBoughtItems = function () {
     return ShoppingListCheckOffService.isEmptytoBoughtItems();
   };
   
 }
 
 //SERVICES
-function ShoppingListService() {
+function ShoppingListCheckOffService() {
   // Variables
   var service = this;
 
@@ -68,7 +72,7 @@ function ShoppingListService() {
   //principal methods
   service.isEmptytoBuyItems = function () {
     var isEmpty = false;
-    if(service.getToBuyItems.length == 0){
+    if(service.getToBuyItems().length == 0){
       isEmpty= true;
     }
     return isEmpty;
@@ -76,7 +80,7 @@ function ShoppingListService() {
 
   service.isEmptytoBoughtItems = function () {
     var isEmpty = false;
-    if(service.getBoughtItems.length == 0){
+    if(service.getBoughtItems().length == 0){
       isEmpty= true;
     }
     return isEmpty;
