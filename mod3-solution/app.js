@@ -54,21 +54,23 @@
         return response.then(
           function (result) {
             console.log(result);
-            // var foundItems = [];
+            foundItems = [];
+            var foundItemsAux = [];
             var data = result.data;
             for (var category in data) {
                 // console.log(data[category]);
-                foundItems.push(
+                foundItemsAux.push(
                     data[category].menu_items.filter(
                         item => item.description.toLowerCase().includes(searchTerm.toLowerCase())
                     )
                 );
             }
-            console.log("foundItems: ");
-            console.log(foundItems);
-            console.log("foundItems.flat(): ");
-            console.log(foundItems.flat());
-            return foundItems.flat();
+            console.log("foundItemsAux: ");
+            console.log(foundItemsAux);
+            console.log("foundItemsAux.flat(): ");
+            console.log(foundItemsAux.flat());
+            foundItems = foundItemsAux.flat()
+            return foundItems;
             // var objetos = result.data;
             // console.log("searchTerm: "+searchTerm);
             // if(searchTerm === ""){
