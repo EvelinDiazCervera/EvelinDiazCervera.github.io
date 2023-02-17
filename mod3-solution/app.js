@@ -55,7 +55,7 @@
             }
             // console.log("le valio y no retorno");
             // console.log("response: "+itemsMenu[0].description);
-            console.log("itemsMenu: "+itemsMenu);
+            console.log("itemsMenu0: "+itemsMenu[0]);
             // console.log("length: "+itemsMenu.length);
             console.log("result: "+result);
             // console.log("searchTerm: "+searchTerm);
