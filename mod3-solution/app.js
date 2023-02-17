@@ -48,7 +48,7 @@
         }).then(
           function (result) {
             var itemsMenu = result.data.menu_items;
-            // console.log("searchTerm: "+searchTerm);
+            console.log("searchTerm: "+searchTerm);
             if(searchTerm === ""){
               // console.log("entro para arrojar el error");
               throw new Error("Nothing found");
