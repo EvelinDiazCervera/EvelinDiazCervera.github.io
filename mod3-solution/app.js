@@ -57,6 +57,9 @@
             foundItems = [];
             var foundItemsAux = [];
             var data = result.data;
+            if(searchTerm === ""){
+              throw new Error("Nothing found");
+            }
             for (var category in data) {
                 // console.log(data[category]);
                 foundItemsAux.push(
