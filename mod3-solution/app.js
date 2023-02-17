@@ -5,7 +5,8 @@
     .controller('NarrowItDownController', NarrowItDownController)
     .service('MenuSearchService', MenuSearchService)
     .directive('foundItems', FoundItemsDirective)
-    .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
+    // .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
+    .constant('ApiBasePath', "https://coursera-jhu-default-rtdb.firebaseio.com");
     
     NarrowItDownController.$inject = ['MenuSearchService'];
 
@@ -43,7 +44,7 @@
       service.getMatchedMenuItems = function (searchTerm){
         var response = $http({
           method: "GET",
-          url: (ApiBasePath + "/menu_items.json"),
+          url: (ApiBasePath + "/categories.json"),
         }).then(
           function (result) {
             var itemsMenu = result.data.menu_items;
