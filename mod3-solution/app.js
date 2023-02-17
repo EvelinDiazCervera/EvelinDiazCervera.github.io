@@ -54,9 +54,9 @@
               throw new Error("Nothing found");
             }
             // console.log("le valio y no retorno");
-            console.log("response: "+itemsMenu[0].description);
-            console.log("length: "+itemsMenu);
-            console.log("length: "+itemsMenu.length);
+            // console.log("response: "+itemsMenu[0].description);
+            // console.log("length: "+itemsMenu);
+            // console.log("length: "+itemsMenu.length);
             console.log("result: "+result);
             // console.log("searchTerm: "+searchTerm);
             foundItems = []; //Init array
