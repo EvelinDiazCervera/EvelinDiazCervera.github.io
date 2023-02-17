@@ -100,6 +100,8 @@
       };
 
       service.removeItem = function (itemIndex) {
+        console.log("foundItems");
+        console.log(foundItems);
         foundItems.splice(itemIndex, 1);
       };
     
