@@ -44,10 +44,10 @@
       service.getMatchedMenuItems = function (searchTerm){
         var response = $http({
           method: "GET",
-          url: (ApiBasePath + "/categories.json"),
+          url: (ApiBasePath + "/menu_items.json"),
         }).then(
           function (result) {
-            var itemsMenu = result.data.menu_items;
+            var itemsMenu = result.data;
             console.log("searchTerm: "+searchTerm);
             if(searchTerm === ""){
               // console.log("entro para arrojar el error");
@@ -55,7 +55,7 @@
             }
             // console.log("le valio y no retorno");
             // console.log("response: "+itemsMenu[0].description);
-            // console.log("length: "+itemsMenu);
+            console.log("itemsMenu: "+itemsMenu);
             // console.log("length: "+itemsMenu.length);
             console.log("result: "+result);
             // console.log("searchTerm: "+searchTerm);
