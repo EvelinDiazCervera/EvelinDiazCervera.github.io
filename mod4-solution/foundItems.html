@@ -1,0 +1,15 @@
+<div>
+    <ol>
+        <li ng-repeat="item in $ctrl.items" class="tarjetas">
+            <div>
+                <div>
+                    <h3> {{ item.name }} </h3>
+                    <p>{{ item.description }} </p>
+                    <button ng-click="$ctrl.remove($index);" class="btn btn-primary">
+                        Don´t want this one
+                    </button>
+                </div>
+            </div>
+        </li>
+    </ol>
+</div>
