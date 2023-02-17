@@ -25,7 +25,8 @@
           menu.errorMessage=null;
           menu.found = result;
           console.log("result.data: "+ menu.found.length);
-          console.log("result: "+ result);
+          console.log("result: ");
+          console.log(result);
         })
         .catch(function (error) {
             // console.log(error);
@@ -43,23 +44,30 @@
     MenuSearchService.$inject = ['$http', 'ApiBasePath'];
     function MenuSearchService($http, ApiBasePath) {
       var service = this;
-      var foundItems = [];
+      // var foundItems = [];
       service.getMatchedMenuItems = function (searchTerm){
         var response = $http({
           method: "GET",
           url: (ApiBasePath + "/menu_items.json"),
-        }).then(
+        });
+        
+        return response.then(
           function (result) {
+            console.log(result);
             var foundItems = [];
             var data = result.data;
             for (var category in data) {
-                //console.log(data[category]);
+                // console.log(data[category]);
                 foundItems.push(
                     data[category].menu_items.filter(
                         item => item.description.toLowerCase().includes(searchTerm.toLowerCase())
                     )
                 );
             }
+            console.log("foundItems: ");
+            console.log(foundItems);
+            console.log("foundItems.flat(): ");
+            console.log(foundItems.flat());
             return foundItems.flat();
             // var objetos = result.data;
             // console.log("searchTerm: "+searchTerm);
@@ -88,7 +96,7 @@
             // return foundItems;
           }
         );
-        return response;
+        // return response;
       };
 
       service.removeItem = function (itemIndex) {
