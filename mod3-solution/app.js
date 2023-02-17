@@ -14,15 +14,18 @@
       var menu = this;
 
       menu.search='';
+      menu.found == [];
 
       menu.searchByTerm = function (searchTerm) {
         // console.log("search: "+searchTerm);
+        menu.found == [];
         var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
     
-        promise.then(function (response) {
+        promise.then(function (result) {
           menu.errorMessage=null;
-          menu.found = response;
-          console.log("Response.data: "+ menu.found.length);
+          menu.found = result;
+          console.log("result.data: "+ menu.found.length);
+          console.log("result: "+ result);
         })
         .catch(function (error) {
             // console.log(error);
@@ -47,54 +50,44 @@
           url: (ApiBasePath + "/menu_items.json"),
         }).then(
           function (result) {
-            var objetos = result.data;
-            console.log("searchTerm: "+searchTerm);
-            if(searchTerm === ""){
-              // console.log("entro para arrojar el error");
-              throw new Error("Nothing found");
+            var foundItems = [];
+            var data = result.data;
+            for (var category in data) {
+                //console.log(data[category]);
+                foundItems.push(
+                    data[category].menu_items.filter(
+                        item => item.description.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                );
             }
-            // console.log("le valio y no retorno");
-            // console.log("response: "+itemsMenu[0].description);
-            console.log("objetosA: "+objetos['A']);
-            // console.log("itemsMenuMenu_items: "+itemsMenu[menu_items]);
-            // console.log("length: "+itemsMenu.length);
-            // console.log("result: "+result);
+            return foundItems.flat();
+            // var objetos = result.data;
             // console.log("searchTerm: "+searchTerm);
-            foundItems = []; //Init array
-
-            // for (var i = 0; i < itemsMenu.length; i++) {
-            for (var i in objetos) {
-              // console.log("DATO: "+itemsMenu[i].description);
-              console.log("objetos[i]: "+objetos[i]);
-              var otro = objetos[i];
-              for(var x in otro){
-                console.log("otro[x]: "+otro[x]);
-                console.log("otro['category']: "+otro['category']);
-                console.log("otro['menu_items']: "+otro['menu_items']);
-                var itemsMenu =otro['menu_items'];
-                for(var y in itemsMenu){
-                  console.log("itemsMenu[y]: "+itemsMenu[y]);
-                  var item =itemsMenu[y];
-                  if (item['description'].toLowerCase().indexOf(searchTerm) >= 0) {
-                    foundItems.push(item);
-                  }
-
-                  // for(var z in items){
-                  //   // console.log("items[z]: "+items[z]);
-                  //   console.log("item['description']: "+item['description']);
-                  // }
-                  // if (itemsMenu[y].description.toLowerCase().indexOf(searchTerm) >= 0) {
-                  //   foundItems.push(itemsMenu[i]);
-                  // }
-                }  
-              }
-            }; 
-            // console.log("foundItems: "+foundItems[0].description);
-            // console.log("foundItems length: "+foundItems.length);
-            return foundItems;
+            // if(searchTerm === ""){
+            //   throw new Error("Nothing found");
+            // }
+            // console.log("objetosA: "+objetos['A']);
+            // foundItems = []; //Init array
+            // for (var i in objetos) {
+            //   console.log("objetos[i]: "+objetos[i]);
+            //   var otro = objetos[i];
+            //   for(var x in otro){
+            //     console.log("otro[x]: "+otro[x]);
+            //     console.log("otro['category']: "+otro['category']);
+            //     console.log("otro['menu_items']: "+otro['menu_items']);
+            //     var itemsMenu =otro['menu_items'];
+            //     for(var y in itemsMenu){
+            //       console.log("itemsMenu[y]: "+itemsMenu[y]);
+            //       var item =itemsMenu[y];
+            //       if (item['description'].toLowerCase().indexOf(searchTerm) >= 0) {
+            //         foundItems.push(item);
+            //       }
+            //     }  
+            //   }
+            // }; 
+            // return foundItems;
           }
         );
-        // console.log("response: "+response);
         return response;
       };
 
@@ -110,20 +103,21 @@
         scope: {
           items: '<',
           onRemove: '&'
-        },
-        controller: FoundItemsDirectiveController,
-        controllerAs: 'menu',
-        bindToController: true
+        }
+        // ,
+        // controller: FoundItemsDirectiveController,
+        // controllerAs: 'menu',
+        // bindToController: true
       };
     
       return ddo;
     }
 
-    function FoundItemsDirectiveController() {
-      var menu = this;
+    // function FoundItemsDirectiveController() {
+    //   var menu = this;
     
       
-    }
+    // }
 
 
   }
