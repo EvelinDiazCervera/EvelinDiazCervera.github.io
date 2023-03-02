@@ -79,29 +79,29 @@
       service.getMatchedMenuItems = function (searchTerm){
         var response = $http({
           method: "GET",
-          url: (ApiBasePath + "/categories.json"),
+          url: (ApiBasePath + "/menu_items.json"),
         }).then(
           function (result) {
-            var itemsMenu = result.data.menu_items;
-            // console.log("searchTerm: "+searchTerm);
+            console.log(result);
+            foundItems = [];
+            var foundItemsAux = [];
+            var data = result.data;
             if(searchTerm === ""){
-              // console.log("entro para arrojar el error");
               throw new Error("Nothing found");
             }
-            // console.log("le valio y no retorno");
-            // console.log("response: "+itemsMenu[0].description);
-            // console.log("length: "+itemsMenu.length);
-            // console.log("searchTerm: "+searchTerm);
-            foundItems = []; //Init array
-            
-            for (var i = 0; i < itemsMenu.length; i++) {
-              // console.log("DATO: "+itemsMenu[i].description);
-              if (itemsMenu[i].description.toLowerCase().indexOf(searchTerm) >= 0) {
-                foundItems.push(itemsMenu[i]);
-              }
-            }; 
-            // console.log("foundItems: "+foundItems[0].description);
-            // console.log("foundItems length: "+foundItems.length);
+            for (var category in data) {
+                // console.log(data[category]);
+                foundItemsAux.push(
+                    data[category].menu_items.filter(
+                        item => item.description.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                );
+            }
+            console.log("foundItemsAux: ");
+            console.log(foundItemsAux);
+            console.log("foundItemsAux.flat(): ");
+            console.log(foundItemsAux.flat());
+            foundItems = foundItemsAux.flat()
             return foundItems;
           }
         );

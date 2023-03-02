@@ -1,6 +1,7 @@
-<ol>
-    <li ng-repeat="item in $ctrlComp.items">
-        <div>{{ item.short_name }}</div>
-        <div>{{ item.name }}</div> 
-    </li>
-</ol>
+<a ui-sref="home">Home</a> &gt;<a ui-sref="categories"> Categories</a> &gt; <span>Items list</span>
+
+<items-component
+    items="ctrlItems.items"
+>
+
+</items-component>

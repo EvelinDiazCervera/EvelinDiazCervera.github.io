@@ -8,6 +8,7 @@
     function ItemsController(items) {
         var ctrlItems = this;
         ctrlItems.items = items;
+        console.log(items);
     }
     
     })();

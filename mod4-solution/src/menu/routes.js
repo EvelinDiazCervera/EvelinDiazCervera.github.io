@@ -19,7 +19,7 @@
             templateUrl: 'src/home/home.template.html'
         })
         
-        // Premade list page
+        // 
         .state('categories', {
             url: '/categories-list',
             templateUrl: 'src/menu/categories/maincategorieslist.template.html',
@@ -37,6 +37,7 @@
             controller: 'ItemsController as ctrlItems',
             resolve: {
                 items: ['$stateParams','MenuDataService', function ($stateParams,MenuDataService) {
+                    console.log($stateParams.categoryShortName);
                     return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
                 }]
             }

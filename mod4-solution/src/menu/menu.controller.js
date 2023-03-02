@@ -4,10 +4,11 @@
     angular.module('MenuApp')
     .controller('MenuController', MenuController)
 
-    MenuController.$inject = ['ShoppingListFactory'];
-    function MenuController(ShoppingListFactory) {
+    MenuController.$inject = ['MenuDataService'];
+    function MenuController(MenuDataService) {
         var ctrl = this;
     
+        
     //   // Use factory to create new shopping list service
     //     var shoppingList = ShoppingListFactory();
     

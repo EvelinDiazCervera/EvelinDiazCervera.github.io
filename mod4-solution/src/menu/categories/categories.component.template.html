@@ -1,8 +1,7 @@
-<h2>Categories</h2>
-
 <ol>
-    <li ng-repeat="category in $ctrl.categories">
-        <div>{{ category.short_name }}</div>
-        <div>{{ category.name }}</div> 
+    <li ng-repeat="category in $ctrl.categories" class="tarjetas">
+        <div>
+            <a ui-sref="items( { categoryShortName : category.short_name } )">{{ category.name }}</a>
+        </div>
     </li>
 </ol>
