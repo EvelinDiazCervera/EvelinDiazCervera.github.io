@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 id="menu-categories-title" class="text-center">
+    Sing Up
+  </h2>
+
+  <form class="singupForm" name="singupForm" novalidate>
+    <label name="lvl">Name</label>
+    <input class="inputInside" type="text" name="name" ng-model="singupCtrl.name" minlength="4" required>
+    <span class="spanError" ng-if="(singupForm.name.$error.minlength || singupForm.name.$error.required) && singupForm.name.$touched">Name must be at least 4 characters long</span><br>
+
+    <label name="lvl">Lastname</label>
+    <input class="inputInside" type="text" name="lastName"  ng-model="singupCtrl.lastName" minlength="4" required>
+    <span class="spanError" ng-if="singupForm.lastName.$invalid && singupForm.lastName.$error.required && singupForm.lastName.$touched">Lastname must be at least 4 characters long</span><br>
+
+    <label name="lvl">Email</label>
+    <input class="inputInside" type="email" name="email" ng-model="singupCtrl.email"  required>
+    <span class="spanError" ng-if=" singupForm.email.$touched && singupForm.email.$invalid">Must be a valid email address: handle@domain format</span><br>
+
+    <label name="lvl">Phone Number</label>
+    <input class="inputInside" type="text" name="phoneNumber" placeholder="Phone ###-###-####" ng-model="singupCtrl.phoneNumber" minlength="2" pattern="(\d{3})-(\d{3})-(\d{4})" >
+    <span class="spanError" ng-if="singupForm.phoneNumber.$error.minlength && singupForm.phoneNumber.$touched && singupForm.phoneNumber.$invalid">Phone number must be in the format ###-###-####.</span><br>
+
+    <label name="lvl">Favorite number dish</label>
+    <input class="inputInside" type="text" name="favoritenumberdish" ng-model="singupCtrl.favoritenumberdish" minlength="2" required>
+    <span class="spanError" ng-if="(singupForm.favoritenumberdish.$error.minlength || singupForm.favoritenumberdish.$error.required) && singupForm.favoritenumberdish.$touched">Favorite number dish must be at least 2 characters longd</span><br>
+    <span class="spanError" ng-if="singupCtrl.noitemExists">No such menu number exists</span><br>
+    <button class="btn btn-primary" ng-click="singupCtrl.searchByTerm(singupCtrl.favoritenumberdish);" ng-disabled="singupForm.$invalid">submit</button>
+  </form>
+
+  <div><span class="alert alert-success" ng-if="singupCtrl.saved">Your information has been saved</span><br></div>
+
+</div>

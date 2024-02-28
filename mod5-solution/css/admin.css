@@ -1,0 +1,25 @@
+/* Sing up PAGE */
+.ng-touched.ng-valid{
+  border:2px green solid;
+}
+
+.ng-touched.ng-invalid{
+  border:2px red solid;
+}
+
+.singupForm{
+  width: 220px;
+  margin: auto;
+}
+
+.spanError{
+  color: #d96c6c;
+}
+
+.inputInside{
+  color:black;
+}
+
+.inputButton{
+  color:black;
+}
